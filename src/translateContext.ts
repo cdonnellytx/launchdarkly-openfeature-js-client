@@ -1,5 +1,5 @@
 import { EvaluationContext } from '@openfeature/js-sdk';
-import { LDLogger, LDUser } from 'launchdarkly-node-server-sdk';
+import { LDLogger, LDUser } from 'launchdarkly-js-client-sdk';
 
 const LDUserBuiltIns = {
   secondary: 'string',

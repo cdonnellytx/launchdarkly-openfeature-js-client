@@ -2,7 +2,7 @@
  * This is the API reference for the LaunchDarkly OpenFeature provider for the Server-Side SDK for
  * Node.js
  *
- * @module @launchdarkly/openfeature-node-server
+ * @module @launchdarkly/openfeature-js-client
  */
 
 /* eslint-disable import/prefer-default-export */

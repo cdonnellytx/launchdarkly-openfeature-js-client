@@ -22,15 +22,15 @@ This version of the LaunchDarkly OpenFeature provider is compatible with Node.js
 
 ```
 npm install @openfeature/js-sdk
-npm install launchdarkly-node-server-sdk
-npm install @launchdarkly/openfeature-node-server
+npm install launchdarkly-js-client-sdk
+npm install @launchdarkly/openfeature-js-client
 ```
 
 ### Usage
 ```
 import { OpenFeature } from '@openfeature/js-sdk';
-import { init } from 'launchdarkly-node-server-sdk';
-import { LaunchDarklyProvider } from '@launchdarkly/openfeature-node-server';
+import { init } from 'launchdarkly-js-client-sdk';
+import { LaunchDarklyProvider } from '@launchdarkly/openfeature-js-client';
 
 
 const ldClient = init('<your-sdk-key>');

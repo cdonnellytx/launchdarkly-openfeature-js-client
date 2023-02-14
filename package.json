@@ -1,7 +1,7 @@
 {
-  "name": "@launchdarkly/openfeature-node-server",
-  "version": "0.1.6",
-  "description": "LaunchDarkly OpenFeature provider for node.",
+  "name": "@launchdarkly/openfeature-js-client",
+  "version": "0.0.1",
+  "description": "LaunchDarkly OpenFeature provider for browsers.",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -21,7 +21,7 @@
   "license": "Apache-2.0",
   "peerDependencies": {
     "@openfeature/js-sdk": "^1.0.0",
-    "launchdarkly-node-server-sdk": "6.x"
+    "launchdarkly-js-client-sdk": "3.x"
   },
   "devDependencies": {
     "@openfeature/js-sdk": "^1.0.0",
@@ -34,7 +34,7 @@
     "eslint-plugin-import": "^2.26.0",
     "jest": "^27.5.1",
     "jest-junit": "^14.0.1",
-    "launchdarkly-node-server-sdk": "6.x",
+    "launchdarkly-js-client-sdk": "3.x",
     "ts-jest": "^27.1.4",
     "typescript": "^4.7.4"
   }

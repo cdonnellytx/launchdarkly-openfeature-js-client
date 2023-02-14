@@ -1,4 +1,4 @@
-import { LDLogger } from 'launchdarkly-node-server-sdk';
+import { LDLogger } from 'launchdarkly-js-client-sdk';
 
 /**
  * Options for the {@link LaunchDarklyProvider}.

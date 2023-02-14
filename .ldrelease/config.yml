@@ -4,7 +4,7 @@ branches:
   - name: main
 
 publications:
-  - url: https://www.npmjs.com/package/@launchdarkly/openfeature-node-server
+  - url: https://www.npmjs.com/package/@launchdarkly/openfeature-js-client
     description: npm
 
 jobs:
