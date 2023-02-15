@@ -22,23 +22,31 @@ describe('given a mock LaunchDarkly client', () => {
   });
 
   it('calls the client correctly for boolean variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: true,
       reason: {
         kind: 'OFF',
       },
     }));
     await ofClient.getBooleanDetails(testFlagKey, false, basicContext);
+    expect(ldClient.identify)
+      .toHaveBeenCalledWith(translateContext(logger, basicContext))
     expect(ldClient.variationDetail)
-      .toHaveBeenCalledWith(testFlagKey, translateContext(logger, basicContext), false);
+      .toHaveBeenCalledWith(testFlagKey, false);
     jest.clearAllMocks();
     await ofClient.getBooleanValue(testFlagKey, false, basicContext);
+    expect(ldClient.identify)
+      .toHaveBeenCalledWith(translateContext(logger, basicContext))
     expect(ldClient.variationDetail)
-      .toHaveBeenCalledWith(testFlagKey, translateContext(logger, basicContext), false);
+      .toHaveBeenCalledWith(testFlagKey, false);
   });
 
   it('handles correct return types for boolean variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: true,
       reason: {
         kind: 'OFF',
@@ -53,7 +61,9 @@ describe('given a mock LaunchDarkly client', () => {
   });
 
   it('handles incorrect return types for boolean variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: 'badness',
       reason: {
         kind: 'OFF',
@@ -69,23 +79,31 @@ describe('given a mock LaunchDarkly client', () => {
   });
 
   it('calls the client correctly for string variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: 'test',
       reason: {
         kind: 'OFF',
       },
     }));
     await ofClient.getStringDetails(testFlagKey, 'default', basicContext);
+    expect(ldClient.identify)
+      .toHaveBeenCalledWith(translateContext(logger, basicContext))
     expect(ldClient.variationDetail)
-      .toHaveBeenCalledWith(testFlagKey, translateContext(logger, basicContext), 'default');
+      .toHaveBeenCalledWith(testFlagKey, 'default');
     jest.clearAllMocks();
     await ofClient.getStringValue(testFlagKey, 'default', basicContext);
+    expect(ldClient.identify)
+      .toHaveBeenCalledWith(translateContext(logger, basicContext))
     expect(ldClient.variationDetail)
-      .toHaveBeenCalledWith(testFlagKey, translateContext(logger, basicContext), 'default');
+      .toHaveBeenCalledWith(testFlagKey, 'default');
   });
 
   it('handles correct return types for string variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: 'good',
       reason: {
         kind: 'OFF',
@@ -100,7 +118,9 @@ describe('given a mock LaunchDarkly client', () => {
   });
 
   it('handles incorrect return types for string variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: true,
       reason: {
         kind: 'OFF',
@@ -116,23 +136,31 @@ describe('given a mock LaunchDarkly client', () => {
   });
 
   it('calls the client correctly for numeric variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: 8,
       reason: {
         kind: 'OFF',
       },
     }));
     await ofClient.getNumberDetails(testFlagKey, 0, basicContext);
+    expect(ldClient.identify)
+      .toHaveBeenCalledWith(translateContext(logger, basicContext))
     expect(ldClient.variationDetail)
-      .toHaveBeenCalledWith(testFlagKey, translateContext(logger, basicContext), 0);
+      .toHaveBeenCalledWith(testFlagKey, 0);
     jest.clearAllMocks();
     await ofClient.getNumberValue(testFlagKey, 0, basicContext);
+    expect(ldClient.identify)
+      .toHaveBeenCalledWith(translateContext(logger, basicContext))
     expect(ldClient.variationDetail)
-      .toHaveBeenCalledWith(testFlagKey, translateContext(logger, basicContext), 0);
+      .toHaveBeenCalledWith(testFlagKey, 0);
   });
 
   it('handles correct return types for numeric variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: 17,
       reason: {
         kind: 'OFF',
@@ -147,7 +175,9 @@ describe('given a mock LaunchDarkly client', () => {
   });
 
   it('handles incorrect return types for numeric variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: true,
       reason: {
         kind: 'OFF',
@@ -163,23 +193,31 @@ describe('given a mock LaunchDarkly client', () => {
   });
 
   it('calls the client correctly for object variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: { yes: 'no' },
       reason: {
         kind: 'OFF',
       },
     }));
     await ofClient.getObjectDetails(testFlagKey, {}, basicContext);
+    expect(ldClient.identify)
+      .toHaveBeenCalledWith(translateContext(logger, basicContext))
     expect(ldClient.variationDetail)
-      .toHaveBeenCalledWith(testFlagKey, translateContext(logger, basicContext), {});
+      .toHaveBeenCalledWith(testFlagKey, {});
     jest.clearAllMocks();
     await ofClient.getObjectValue(testFlagKey, {}, basicContext);
+    expect(ldClient.identify)
+      .toHaveBeenCalledWith(translateContext(logger, basicContext))
     expect(ldClient.variationDetail)
-      .toHaveBeenCalledWith(testFlagKey, translateContext(logger, basicContext), {});
+      .toHaveBeenCalledWith(testFlagKey, {});
   });
 
   it('handles correct return types for object variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: { some: 'value' },
       reason: {
         kind: 'OFF',
@@ -194,7 +232,9 @@ describe('given a mock LaunchDarkly client', () => {
   });
 
   it('handles incorrect return types for object variations', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: 22,
       reason: {
         kind: 'OFF',
@@ -217,7 +257,9 @@ describe('given a mock LaunchDarkly client', () => {
     ['UNSPECIFIED', ErrorCode.GENERAL],
     [undefined, ErrorCode.GENERAL],
   ])('handles errors from the client', async (ldError, ofError) => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: { yes: 'no' },
       reason: {
         kind: 'ERROR',
@@ -234,7 +276,9 @@ describe('given a mock LaunchDarkly client', () => {
   });
 
   it('includes the variant', async () => {
-    ldClient.variationDetail = jest.fn(async () => ({
+    ldClient.identify = jest.fn(async () => ({
+    }))
+    ldClient.variationDetail = jest.fn(() => ({
       value: { yes: 'no' },
       variationIndex: 22,
       reason: {
