@@ -40,28 +40,28 @@ export default class SafeLogger implements LDLogger {
     this.fallback = fallback;
   }
 
-  private log(level: 'error' | 'warn' | 'info' | 'debug', args: any[]) {
+  private log(level: 'error' | 'warn' | 'info' | 'debug', message: string) {
     try {
-      this.logger[level](...args);
+      this.logger[level](message);
     } catch {
       // If all else fails do not break.
-      this.fallback[level](...args);
+      this.fallback[level](message);
     }
   }
 
-  error(...args: any[]): void {
-    this.log('error', args);
+  error(message: string): void {
+    this.log('error', message);
   }
 
-  warn(...args: any[]): void {
-    this.log('warn', args);
+  warn(message: string): void {
+    this.log('warn', message);
   }
 
-  info(...args: any[]): void {
-    this.log('info', args);
+  info(message: string): void {
+    this.log('info', message);
   }
 
-  debug(...args: any[]): void {
-    this.log('debug', args);
+  debug(message: string): void {
+    this.log('debug', message);
   }
 }

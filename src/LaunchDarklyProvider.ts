@@ -65,10 +65,10 @@ export default class LaunchDarklyProvider implements Provider {
     defaultValue: boolean,
     context: EvaluationContext,
   ): Promise<ResolutionDetails<boolean>> {
-    const res = await this.client.variationDetail(
+    await this.translateContextAndIdentify(context)
+    const res = this.client.variationDetail(
       flagKey,
-      this.translateContext(context),
-      defaultValue,
+      defaultValue
     );
     if (typeof res.value === 'boolean') {
       return translateResult(res);
@@ -94,10 +94,10 @@ export default class LaunchDarklyProvider implements Provider {
     defaultValue: string,
     context: EvaluationContext,
   ): Promise<ResolutionDetails<string>> {
-    const res = await this.client.variationDetail(
+    await this.translateContextAndIdentify(context)
+    const res = this.client.variationDetail(
       flagKey,
-      this.translateContext(context),
-      defaultValue,
+      defaultValue
     );
     if (typeof res.value === 'string') {
       return translateResult(res);
@@ -123,9 +123,9 @@ export default class LaunchDarklyProvider implements Provider {
     defaultValue: number,
     context: EvaluationContext,
   ): Promise<ResolutionDetails<number>> {
-    const res = await this.client.variationDetail(
+    await this.translateContextAndIdentify(context)
+    const res = this.client.variationDetail(
       flagKey,
-      this.translateContext(context),
       defaultValue,
     );
     if (typeof res.value === 'number') {
@@ -150,9 +150,9 @@ export default class LaunchDarklyProvider implements Provider {
     defaultValue: U,
     context: EvaluationContext,
   ): Promise<ResolutionDetails<U>> {
-    const res = await this.client.variationDetail(
+    await this.translateContextAndIdentify(context)
+    const res = this.client.variationDetail(
       flagKey,
-      this.translateContext(context),
       defaultValue,
     );
     if (typeof res.value === 'object') {
@@ -168,5 +168,9 @@ export default class LaunchDarklyProvider implements Provider {
 
   private translateContext(context: EvaluationContext) {
     return translateContext(this.logger, context);
+  }
+
+  private async translateContextAndIdentify(context: EvaluationContext): Promise<void> {
+      await this.client.identify(this.translateContext(context));
   }
 }
